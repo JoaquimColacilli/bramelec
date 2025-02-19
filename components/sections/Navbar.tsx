@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Building2, Menu, X } from "lucide-react";
-import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,24 +25,25 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+        isScrolled || isMenuOpen ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          {/* Logo */}
           <div className="flex items-center">
             <button 
               onClick={scrollToTop}
               className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
             >
               <div className="relative">
-                <Building2 className={`h-8 w-8 transition-all duration-300 ${
-                  isScrolled ? "text-[#A60C38]" : "text-white"
+                <Building2 className={`h-8 w-8 transition-colors duration-300 ${
+                  isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
                 }`} />
                 <div className="absolute inset-0 bg-white/20 rounded-full transform scale-110 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               </div>
-              <span className={`font-bold text-xl transition-all duration-300 ${
-                isScrolled ? "text-[#A60C38]" : "text-white"
+              <span className={`font-bold text-xl transition-colors duration-300 ${
+                isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
               }`}>
                 BRAMELEC
               </span>
@@ -54,16 +54,16 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
               {["Nosotros", "Servicios", "Contacto"].map((item) => (
-                <Link
+                <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   className={`relative group ${
-                    isScrolled ? "text-gray-800 hover:text-[#A60C38]" : "text-white hover:text-white"
+                    isScrolled ? "text-gray-800" : "text-white"
                   } transition-colors duration-300 font-medium`}
                 >
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A60C38] group-hover:w-full transition-all duration-300"></span>
-                </Link>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+                </a>
               ))}
             </div>
           </div>
@@ -72,9 +72,10 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-md ${
-                isScrolled ? "text-[#A60C38]" : "text-white"
+              className={`p-2 rounded-md transition-colors duration-300 ${
+                isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
               }`}
+              aria-label="Menu"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -84,24 +85,26 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 bg-[#A60C38] shadow-lg">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {["Nosotros", "Servicios", "Contacto"].map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/10 transition-colors duration-300"
-                >
-                  {item}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+      {/* Mobile Menu - Moved outside of max-w container */}
+      <div
+        className={`md:hidden fixed left-0 right-0 bg-white shadow-lg transition-all duration-300 ${
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <div className="px-4 py-2 space-y-1">
+          {["Nosotros", "Servicios", "Contacto"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              onClick={() => setIsMenuOpen(false)}
+              className="block w-full px-3 py-2 text-base font-medium text-gray-800 hover:text-[#A60C38] hover:bg-gray-50 rounded-md transition-colors duration-300"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );
