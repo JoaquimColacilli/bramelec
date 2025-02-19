@@ -23,18 +23,28 @@ const values = [
 ];
 
 export default function About() {
-  const [ref, inView] = useInView({
+  const [titleRef, titleInView] = useInView({
+    threshold: 0.2,
     triggerOnce: true,
+  });
+  const [contentRef, contentInView] = useInView({
     threshold: 0.1,
+    triggerOnce: true,
+  });
+  const [cardsRef, cardsInView] = useInView({
+    threshold: 0.05,
+    triggerOnce: true,
   });
 
   return (
     <section id="nosotros" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Animación independiente para el título */}
         <motion.div
+          ref={titleRef}
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          animate={titleInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 relative inline-block group">
@@ -44,10 +54,12 @@ export default function About() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Columna izquierda con animación independiente */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }} // Corrección clave
-            transition={{ duration: 0.8, delay: 0.2 }}
+            ref={contentRef}
+            initial={{ opacity: 0, x: -20 }}
+            animate={contentInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.4, delay: 0.2 }}
             className="relative"
           >
             <div className="absolute -top-4 -left-4 w-72 h-72 bg-[#A60C38] rounded-lg opacity-20 hidden md:block"></div>
@@ -67,17 +79,19 @@ export default function About() {
             </div>
           </motion.div>
 
-          <motion.div
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }} // Corrección clave
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-4 md:space-y-6"
-          >
+          {/* Columna derecha con animaciones individuales por card */}
+          <div className="space-y-4 md:space-y-6" ref={cardsRef}>
             {values.map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }} // Corrección clave
-                transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
+                animate={cardsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.3,
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100,
+                }}
                 className="group relative bg-white p-4 md:p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 <div className="flex items-start space-x-4">
@@ -96,7 +110,7 @@ export default function About() {
                 <div className="absolute bottom-0 left-0 h-1 bg-[#A60C38] w-0 group-hover:w-full transition-all duration-300"></div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
