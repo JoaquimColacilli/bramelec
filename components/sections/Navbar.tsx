@@ -16,6 +16,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -25,7 +32,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2 group">
+            <button 
+              onClick={scrollToTop}
+              className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
+            >
               <div className="relative">
                 <Building2 className={`h-8 w-8 transition-all duration-300 ${
                   isScrolled ? "text-[#A60C38]" : "text-white"
@@ -37,7 +47,7 @@ export default function Navbar() {
               }`}>
                 BRAMELEC
               </span>
-            </Link>
+            </button>
           </div>
 
           {/* Desktop Menu */}
@@ -77,20 +87,14 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className={`px-2 pt-2 pb-3 space-y-1 ${
-              isScrolled ? "bg-white" : "bg-[#A60C38]"
-            }`}>
+          <div className="md:hidden absolute left-0 right-0 bg-[#A60C38] shadow-lg">
+            <div className="px-2 pt-2 pb-3 space-y-1">
               {["Nosotros", "Servicios", "Contacto"].map((item) => (
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
-                    isScrolled 
-                      ? "text-gray-800 hover:text-[#A60C38]" 
-                      : "text-white hover:text-white"
-                  }`}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/10 transition-colors duration-300"
                 >
                   {item}
                 </Link>
