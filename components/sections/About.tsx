@@ -7,22 +7,25 @@ import { CheckCircle2 } from "lucide-react";
 const values = [
   {
     title: "Excelencia Técnica",
-    description: "Comprometidos con los más altos estándares de calidad en cada proyecto."
+    description:
+      "Comprometidos con los más altos estándares de calidad en cada proyecto.",
   },
   {
     title: "Innovación Constante",
-    description: "Adoptamos las últimas tecnologías y métodos para ofrecer soluciones modernas."
+    description:
+      "Adoptamos las últimas tecnologías y métodos para ofrecer soluciones modernas.",
   },
   {
     title: "Compromiso Total",
-    description: "Dedicación completa a la satisfacción y éxito de nuestros clientes."
-  }
+    description:
+      "Dedicación completa a la satisfacción y éxito de nuestros clientes.",
+  },
 ];
 
 export default function About() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   return (
@@ -43,24 +46,29 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }} // Corrección clave
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
             <div className="absolute -top-4 -left-4 w-72 h-72 bg-[#A60C38] rounded-lg opacity-20 hidden md:block"></div>
             <div className="relative bg-white p-6 md:p-8 rounded-lg shadow-xl">
               <p className="text-base md:text-lg text-gray-600 mb-6">
-                En BRAMELEC, nos dedicamos a transformar espacios a través de soluciones eléctricas innovadoras y seguras. Con años de experiencia en el sector, hemos desarrollado una reputación sólida basada en la excelencia técnica y el compromiso con nuestros clientes.
+                En BRAMELEC, nos dedicamos a transformar espacios a través de
+                soluciones eléctricas innovadoras y seguras. Con años de
+                experiencia en el sector, hemos desarrollado una reputación
+                sólida basada en la excelencia técnica y el compromiso con
+                nuestros clientes.
               </p>
               <p className="text-base md:text-lg text-gray-600">
-                Nuestra misión es proporcionar servicios de ingeniería eléctrica de la más alta calidad, garantizando la seguridad y eficiencia en cada proyecto que emprendemos.
+                Nuestra misión es proporcionar servicios de ingeniería eléctrica
+                de la más alta calidad, garantizando la seguridad y eficiencia
+                en cada proyecto que emprendemos.
               </p>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }} // Corrección clave
             transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-4 md:space-y-6"
           >
@@ -68,7 +76,7 @@ export default function About() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }} // Corrección clave
                 transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
                 className="group relative bg-white p-4 md:p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
               >
@@ -80,7 +88,9 @@ export default function About() {
                     <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-sm md:text-base text-gray-600">{value.description}</p>
+                    <p className="text-sm md:text-base text-gray-600">
+                      {value.description}
+                    </p>
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 h-1 bg-[#A60C38] w-0 group-hover:w-full transition-all duration-300"></div>

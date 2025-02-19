@@ -18,7 +18,7 @@ export default function Navbar() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -28,23 +28,27 @@ export default function Navbar() {
         isScrolled || isMenuOpen ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <button 
+          {/* Logo - Añadido flex-1 */}
+          <div className="flex items-center min-w-0 flex-1">
+            <button
               onClick={scrollToTop}
               className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
             >
               <div className="relative">
-                <Building2 className={`h-8 w-8 transition-colors duration-300 ${
-                  isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
-                }`} />
+                <Building2
+                  className={`h-8 w-8 transition-colors duration-300 ${
+                    isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
+                  }`}
+                />
                 <div className="absolute inset-0 bg-white/20 rounded-full transform scale-110 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               </div>
-              <span className={`font-bold text-xl transition-colors duration-300 ${
-                isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
-              }`}>
+              <span
+                className={`font-bold text-xl transition-colors duration-300 truncate ${
+                  isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
+                }`}
+              >
                 BRAMELEC
               </span>
             </button>
@@ -68,14 +72,15 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile Menu Button - Centrado instantáneo */}
+          <div className="md:hidden flex-shrink-0 ml-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-md transition-colors duration-300 ${
+              className={`p-2 rounded-md transition-colors duration-300 flex items-center justify-center ${
                 isScrolled || isMenuOpen ? "text-[#A60C38]" : "text-white"
               }`}
               aria-label="Menu"
+              style={{ width: "2.5rem", height: "2.5rem" }}
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -87,11 +92,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu - Moved outside of max-w container */}
+      {/* Mobile Menu - Animación instantánea */}
       <div
-        className={`md:hidden fixed left-0 right-0 bg-white shadow-lg transition-all duration-300 ${
-          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`md:hidden fixed left-0 right-0 top-16 bg-white shadow-lg ${
+          isMenuOpen ? "block" : "hidden"
         }`}
+        style={{
+          transition: "none", // Elimina cualquier transición
+        }}
       >
         <div className="px-4 py-2 space-y-1">
           {["Nosotros", "Servicios", "Contacto"].map((item) => (
