@@ -8,9 +8,10 @@ import Footer from "@/components/sections/Footer";
 import Navbar from "@/components/sections/Navbar";
 import { useEffect } from "react";
 
+import WhatsAppFloatButton from "@/components/ui/WhatsAppFloatButton";
+
 export default function Home() {
   useEffect(() => {
-    // Implement structured data for breadcrumbs
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -42,7 +43,6 @@ export default function Home() {
       ],
     };
 
-    // Add breadcrumb schema to the page
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.text = JSON.stringify(breadcrumbSchema);
@@ -61,6 +61,11 @@ export default function Home() {
       <Services />
       <Contact />
       <Footer />
+
+      <WhatsAppFloatButton
+        phoneNumber="+5491168949466"
+        message="Hola, me interesa más información sobre Bramelec"
+      />
     </main>
   );
 }
