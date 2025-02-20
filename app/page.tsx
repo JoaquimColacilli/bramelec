@@ -12,39 +12,39 @@ export default function Home() {
   useEffect(() => {
     // Implement structured data for breadcrumbs
     const breadcrumbSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
       itemListElement: [
         {
-          '@type': 'ListItem',
+          "@type": "ListItem",
           position: 1,
-          name: 'Inicio',
-          item: 'https://bramelec.com'
+          name: "Inicio",
+          item: "https://bramelec.com",
         },
         {
-          '@type': 'ListItem',
+          "@type": "ListItem",
           position: 2,
-          name: 'Nosotros',
-          item: 'https://bramelec.com#nosotros'
+          name: "Nosotros",
+          item: "https://bramelec.com#nosotros",
         },
         {
-          '@type': 'ListItem',
+          "@type": "ListItem",
           position: 3,
-          name: 'Servicios',
-          item: 'https://bramelec.com#servicios'
+          name: "Servicios",
+          item: "https://bramelec.com#servicios",
         },
         {
-          '@type': 'ListItem',
+          "@type": "ListItem",
           position: 4,
-          name: 'Contacto',
-          item: 'https://bramelec.com#contacto'
-        }
-      ]
+          name: "Contacto",
+          item: "https://bramelec.com#contacto",
+        },
+      ],
     };
 
     // Add breadcrumb schema to the page
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
     script.text = JSON.stringify(breadcrumbSchema);
     document.head.appendChild(script);
 

@@ -1,13 +1,17 @@
-import { MetadataRoute } from "next";
+// app/robots.txt.ts
+export const runtime = "edge";
 
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/private/",
+// Genera robots.txt dinámico
+export async function GET() {
+  const content = `User-agent: *
+Allow: /
+
+Sitemap: https://bramelec.com/sitemap.xml
+`;
+  return new Response(content, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain",
     },
-    sitemap: "https://bramelec.com/sitemap.xml",
-    host: "https://bramelec.com",
-  };
+  });
 }
