@@ -1,11 +1,53 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Send } from "lucide-react";
+import { Send, X } from "lucide-react";
+import emailjs from "emailjs-com";
 
+function Notification({
+  message,
+  type,
+  onClose,
+}: {
+  message: string;
+  type: "success" | "error";
+  onClose: () => void;
+}) {
+  const bgColor = type === "success" ? "#16a34a" : "#b91c1c";
+
+  return (
+    <AnimatePresence>
+      {message && (
+        <motion.div
+          key="notification"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.3 }}
+          className="fixed top-2 right-4 z-50"
+        >
+          <div
+            className="relative rounded-lg shadow-lg text-white px-4 py-3 pr-10"
+            style={{ backgroundColor: bgColor, width: "300px" }}
+          >
+            <button
+              className="absolute top-2 right-2 text-white hover:text-gray-200"
+              onClick={onClose}
+            >
+              <X className="h-4 w-4" />
+            </button>
+            {message}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 export default function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+
   const [formState, setFormState] = useState({
     name: "",
     phone: "",
@@ -14,6 +56,11 @@ export default function Contact() {
     message: "",
   });
 
+  const [notificationMessage, setNotificationMessage] = useState("");
+  const [notificationType, setNotificationType] = useState<"success" | "error">(
+    "success"
+  );
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -21,19 +68,56 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formState);
-    alert("Mensaje enviado con éxito!");
-    setFormState({
-      name: "",
-      phone: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+
+    if (!formRef.current) return;
+
+    emailjs
+      .sendForm(
+        "service_32m7639",
+        "template_0n49t18",
+        formRef.current,
+        "e2HqOi8odXsKsmB4K"
+      )
+      .then(
+        (result) => {
+          console.log("Éxito al enviar:", result.text);
+          setNotificationType("success");
+          setNotificationMessage("Mensaje enviado con éxito!");
+
+          setFormState({
+            name: "",
+            phone: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+
+          setTimeout(() => {
+            setNotificationMessage("");
+          }, 4000);
+        },
+        (error) => {
+          console.error("Error al enviar:", error.text);
+          setNotificationType("error");
+          setNotificationMessage(
+            "Hubo un error al enviar el mensaje. Inténtalo de nuevo."
+          );
+          setTimeout(() => {
+            setNotificationMessage("");
+          }, 4000);
+        }
+      );
   };
 
   return (
     <>
+      {/* Notificación flotante */}
+      <Notification
+        message={notificationMessage}
+        type={notificationType}
+        onClose={() => setNotificationMessage("")}
+      />
+
       <section id="contacto" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
           <motion.div
@@ -57,36 +141,99 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-xl mx-auto"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {[
-                { name: "name", label: "Nombre", type: "text" },
-                { name: "phone", label: "Teléfono", type: "tel" },
-                { name: "email", label: "Email", type: "email" },
-                { name: "subject", label: "Asunto", type: "text" },
-              ].map((field) => (
-                <div key={field.name}>
-                  <label
-                    htmlFor={field.name}
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    {field.label}
-                  </label>
-                  <input
-                    type={field.type}
-                    id={field.name}
-                    name={field.name}
-                    value={formState[field.name as keyof typeof formState]}
-                    onChange={(e) =>
-                      setFormState((prev) => ({
-                        ...prev,
-                        [field.name]: e.target.value,
-                      }))
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#A60C38] focus:border-transparent transition-all duration-300"
-                    required
-                  />
-                </div>
-              ))}
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label
+                  htmlFor="from_name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  id="from_name"
+                  name="from_name"
+                  value={formState.name}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#A60C38] focus:border-transparent transition-all duration-300"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="from_phone"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Teléfono
+                </label>
+                <input
+                  type="tel"
+                  id="from_phone"
+                  name="from_phone"
+                  value={formState.phone}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      phone: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#A60C38] focus:border-transparent transition-all duration-300"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="from_email"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="from_email"
+                  name="from_email"
+                  value={formState.email}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#A60C38] focus:border-transparent transition-all duration-300"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Asunto
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formState.subject}
+                  onChange={(e) =>
+                    setFormState((prev) => ({
+                      ...prev,
+                      subject: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#A60C38] focus:border-transparent transition-all duration-300"
+                  required
+                />
+              </div>
+
               <div>
                 <label
                   htmlFor="message"
@@ -109,6 +256,7 @@ export default function Contact() {
                   required
                 ></textarea>
               </div>
+
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
