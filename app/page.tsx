@@ -63,8 +63,8 @@ export default function Home() {
       <Footer />
 
       <WhatsAppFloatButton
-        phoneNumber="+5491168949466"
-        message="Hola, me interesa más información sobre Bramelec"
+        phoneNumber="+5491172368190"
+        message="Hola, me interesa más información sobre los servicios que brinda Bramelec"
       />
     </main>
   );

@@ -163,7 +163,7 @@ export default function Contact() {
       {/* Overlay de carga a pantalla completa */}
       {isLoading && <LoadingOverlay />}
 
-      <section id="contacto" className="py-24 bg-white relative">
+      <section id="contacto" className="py-24 bg-gray-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
