@@ -35,13 +35,52 @@ export default function About() {
     threshold: 0.05,
     triggerOnce: true,
   });
+  const [bgRef, bgInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   return (
     <>
-      {/* Sección principal About */}
-      <section id="nosotros" className="py-24 bg-gray-100">
+      <section
+        id="nosotros"
+        className="relative py-24 bg-gray-100 overflow-hidden"
+      >
+        {/* SVG solo en desktop */}
+        <motion.div
+          ref={bgRef}
+          initial={{ opacity: 0 }}
+          animate={bgInView ? { opacity: 0.1 } : {}}
+          transition={{ duration: 0.5 }}
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden md:block"
+        >
+          <svg
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 373.69 620.58"
+            fill="#9e1a3f"
+            className="w-[550px] -mr-[100px]"
+          >
+            <defs>
+              <style>{`.cls-1{fill:#9e1a3f;}`}</style>
+            </defs>
+            <path
+              className="cls-1"
+              d="M349.68,336.36c-8.83-9.98-23.76-11.41-34.5-3.52-20.79,15.27-55.49,34.36-99.1,33.07-83.5-2.47-158.46-78.25-158.46-153.19,0-22.17,4.64-43.1,13.05-61.96,24.09-54.01,83.28-91.33,145.42-91.23,43.61.07,77.15,18.7,97.17,33.65,11.18,8.35,26.93,6.34,35.54-4.64.91-1.16,1.82-2.32,2.72-3.47,8.99-11.46,6.57-28.02-5.19-36.61C309.59,21.63,263.76,5.66,216.7,5.66,97.62,5.66,2.6,96.58,2.6,211.54s93.85,208.23,212.34,208.23c47.41,0,93.6-17.51,131.1-45.41,12.08-8.99,13.96-26.35,3.98-37.62-.11-.13-.23-.26-.34-.39Z"
+            />
+            <circle className="cls-1" cx="216.97" cy="212.6" r="81.43" />
+            <path
+              className="cls-1"
+              d="M276.67,504.24l-108.93,19.93c-17.83,3.26-34.26-10.43-34.26-28.56h0c0-14.02,10.02-26.04,23.81-28.56l108.93-19.93c17.83-3.26,34.26,10.43,34.26,28.56h0c0,14.02-10.02,26.04-23.81,28.56Z"
+            />
+            <path
+              className="cls-1"
+              d="M255.06,603.14l-65.73,12.03c-17.83,3.26-34.26-10.43-34.26-28.56h0c0-14.02,10.02-26.04,23.81-28.56l65.73-12.03c17.83-3.26,34.26,10.43,34.26,28.56h0c0,14.02-10.02,26.04-23.81,28.56Z"
+            />
+          </svg>
+        </motion.div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Animación independiente para el título */}
           <motion.div
             ref={titleRef}
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +95,6 @@ export default function About() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Columna izquierda con animación independiente */}
             <motion.div
               ref={contentRef}
               initial={{ opacity: 0, x: -20 }}
@@ -81,7 +119,6 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Columna derecha con animaciones individuales por card */}
             <div className="space-y-4 md:space-y-6" ref={cardsRef}>
               {values.map((value, index) => (
                 <motion.div
@@ -117,10 +154,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Marcado estructurado adicional para SEO (AboutPage) */}
       <script
         type="application/ld+json"
-        // dangerouslySetInnerHTML nos permite insertar JSON-LD para SEO
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
