@@ -20,7 +20,7 @@ const WhatsAppFloatButton: FC<WhatsAppFloatButtonProps> = ({
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-16 h-16 rounded-full 
+        className="flex items-center justify-center w-28 h-28 rounded-full 
         shadow-lg transition-colors hover:shadow-xl 
         transform transition-transform duration-300 
         hover:scale-105"
