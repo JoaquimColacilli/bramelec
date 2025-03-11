@@ -6,19 +6,19 @@ import { CheckCircle2 } from "lucide-react";
 
 const values = [
   {
-    title: "Excelencia Técnica",
+    title: "Calidad y Precisión",
     description:
-      "Comprometidos con los más altos estándares de calidad en cada proyecto.",
+      "Nos enfocamos en desarrollar proyectos eléctricos para garantizar instalaciones seguras y confiables.",
   },
   {
-    title: "Innovación Constante",
+    title: "Soluciones a Medida",
     description:
-      "Adoptamos las últimas tecnologías y métodos para ofrecer soluciones modernas.",
+      "Cada obra es única, por eso adaptamos nuestras soluciones eléctricas a las necesidades específicas de cada cliente.",
   },
   {
-    title: "Compromiso Total",
+    title: "Compromiso con cada Proyecto",
     description:
-      "Dedicación completa a la satisfacción y éxito de nuestros clientes.",
+      "Acompañamos cada obra con responsabilidad y atención a los detalles, asegurando un servicio confiable.",
   },
 ];
 
@@ -105,16 +105,15 @@ export default function About() {
               <div className="absolute -top-4 -left-4 w-72 h-72 bg-[#A60C38] rounded-lg opacity-20 hidden md:block"></div>
               <div className="relative bg-white p-6 md:p-8 rounded-lg shadow-xl">
                 <p className="text-base md:text-lg text-gray-600 mb-6">
-                  En BRAMELEC, nos dedicamos a transformar espacios a través de
-                  soluciones eléctricas innovadoras y seguras. Con años de
-                  experiencia en el sector, hemos desarrollado una reputación
-                  sólida basada en la excelencia técnica y el compromiso con
-                  nuestros clientes.
+                  En BRAMELEC, desarrollamos soluciones eléctricas seguras y
+                  eficientes para distintos tipos de proyectos. Nos enfocamos en
+                  diseñar instalaciones funcionales y adaptadas a cada
+                  necesidad, brindando un servicio confiable y bien planificado.
                 </p>
                 <p className="text-base md:text-lg text-gray-600">
-                  Nuestra misión es proporcionar servicios de ingeniería
-                  eléctrica de la más alta calidad, garantizando la seguridad y
-                  eficiencia en cada proyecto que emprendemos.
+                  Nuestra misión es ofrecer proyectos de ingeniería eléctrica
+                  que prioricen la seguridad y el buen funcionamiento,
+                  asegurando instalaciones prácticas y duraderas.
                 </p>
               </div>
             </motion.div>

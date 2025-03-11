@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react"; // Se quita Building2
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -36,7 +36,7 @@ export default function Navbar() {
             <div className="flex items-center">
               <button
                 onClick={scrollToTop}
-                className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
+                className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-0"
               >
                 <div className="relative">
                   {isScrolled || isMenuOpen ? (

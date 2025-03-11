@@ -115,7 +115,6 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          console.log("Éxito al enviar:", result.text);
           setNotificationType("success");
           setNotificationMessage("Mensaje enviado con éxito!");
           setFormState({
@@ -129,7 +128,6 @@ export default function Contact() {
           setTimeout(() => setNotificationMessage(""), 4000);
         },
         (error) => {
-          console.error("Error al enviar:", error.text);
           setNotificationType("error");
           setNotificationMessage(
             "Hubo un error al enviar el mensaje. Inténtalo de nuevo."

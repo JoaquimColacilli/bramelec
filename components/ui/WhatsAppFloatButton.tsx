@@ -13,7 +13,6 @@ const WhatsAppFloatButton: FC<WhatsAppFloatButtonProps> = ({
 }) => {
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-  console.log(whatsappLink);
   return (
     <div className="fixed bottom-5 right-5 z-50">
       <a

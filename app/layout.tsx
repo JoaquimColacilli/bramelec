@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     default: "Bramelec - Expertos en Planos de Instalaciones Eléctricas",
     template: "%s | Bramelec",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
   description:
     "Especialistas en diseño y planos de instalaciones eléctricas para edificios. Servicios profesionales de ingeniería eléctrica en Buenos Aires.",
   keywords: [

@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <>
       <footer className="relative bg-[#A60C38] text-white" ref={ref}>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10 filter blur"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             <motion.div
@@ -44,7 +44,7 @@ export default function Footer() {
                 </svg>
               </div>
               <p className="text-white/90">
-                Expertos en planos de instalaciones eléctricas.
+                Soluciones eléctricas eficientes para tu proyecto.
               </p>
             </motion.div>
 
@@ -65,7 +65,7 @@ export default function Footer() {
                 <div className="flex items-center space-x-3 group">
                   <Mail className="h-5 w-5 text-white group-hover:scale-110 transition-transform duration-300" />
                   <span className="group-hover:text-white/80 transition-colors duration-300">
-                    contacto@bramelec.com
+                    bramelec1@gmail.com
                   </span>
                 </div>
                 <div className="flex items-center space-x-3 group">

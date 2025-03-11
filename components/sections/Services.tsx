@@ -9,7 +9,7 @@ const services = [
     icon: Lightbulb,
     title: "Diseño y planos de instalaciones eléctricas",
     description:
-      "Desarrollamos planes detallados y precisos para sistemas eléctricos completos en edificios residenciales y comerciales.",
+      "Elaboramos planos detallados para sistemas eléctricos completos en edificios de distintas índoles, asegurando un diseño eficiente y bien ejecutado. Adaptados a las necesidades específicas de cada obra.",
     details: [
       "Diseño de instalaciones eléctricas",
       "Cálculo de cargas y dimensionamiento",
@@ -19,26 +19,27 @@ const services = [
   },
   {
     icon: FileCheck,
-    title: "Planos municipales y habilitaciones",
+    title: "Planos municipales",
     description:
-      "Gestionamos toda la documentación necesaria para obtener las aprobaciones y permisos municipales de tu proyecto.",
+      "Elaboramos la documentación técnica requerida para la presentación de proyectos eléctricos ante organismos municipales.",
     details: [
-      "Gestión de permisos municipales",
-      "Documentación técnica",
-      "Certificaciones necesarias",
-      "Seguimiento de trámites",
+      "Confección de planos eléctricos conforme a normativa",
+      "Detalles y esquemas técnicos",
+      "Cálculos de potencia y planillas",
     ],
   },
   {
     icon: Network,
-    title: "Corrientes débiles",
+    title: "Corrientes Débiles",
     description:
-      "Diseñamos sistemas de cableado estructurado, redes de datos y sistemas de comunicación para edificios modernos.",
+      "Diseñamos sistemas de corrientes debiles, redes de datos y sistemas de comunicación para edificios modernos.",
     details: [
       "Redes de datos y telefonía",
-      "Sistemas de seguridad",
-      "Control de accesos",
-      "Automatización de edificios",
+      "Control de Acceso",
+      "Detección de Incendio",
+      "Circuito Cerrado de TV (CCTV)",
+      "Portero Electrico",
+      "Intrusión",
     ],
   },
 ];
@@ -56,7 +57,7 @@ export default function Services() {
         id="servicios"
         className="py-24 bg-[#A60C38] relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10 filter blur-sm "></div>
         <div
           className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           ref={ref}
