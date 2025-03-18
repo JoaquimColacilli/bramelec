@@ -86,7 +86,7 @@ export default function RootLayout({
               },
               sameAs: [
                 "https://instagram.com/bramelec",
-                "https://linkedin.com/company/bramelec",
+                "https://linkedin.com/company/https://www.linkedin.com/company/bramelec-proyectos-electricos/",
               ],
             }),
           }}

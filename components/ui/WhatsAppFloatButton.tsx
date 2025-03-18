@@ -13,16 +13,21 @@ const WhatsAppFloatButton: FC<WhatsAppFloatButtonProps> = ({
 }) => {
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
   return (
     <div className="fixed bottom-5 right-5 z-50">
       <a
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-28 h-28 rounded-full 
-        shadow-lg transition-colors hover:shadow-xl 
-        transform transition-transform duration-300 
-        hover:scale-105"
+        className="
+          flex items-center justify-center 
+          w-16 h-16 md:w-28 md:h-28 
+          rounded-full shadow-lg 
+          transition-all hover:shadow-xl 
+          transform duration-300 
+          hover:scale-105
+        "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +37,7 @@ const WhatsAppFloatButton: FC<WhatsAppFloatButtonProps> = ({
           xmlSpace="preserve"
         >
           <g
-            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
+            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.80)"
             stroke="none"
             strokeWidth="0"
             strokeDasharray="none"

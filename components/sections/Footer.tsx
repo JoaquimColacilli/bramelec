@@ -65,7 +65,7 @@ export default function Footer() {
                 <div className="flex items-center space-x-3 group">
                   <Mail className="h-5 w-5 text-white group-hover:scale-110 transition-transform duration-300" />
                   <span className="group-hover:text-white/80 transition-colors duration-300">
-                    bramelec1@gmail.com
+                    estudio@bramelec.com{" "}
                   </span>
                 </div>
                 <div className="flex items-center space-x-3 group">
