@@ -68,6 +68,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        {/* Favicons y manifest */}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Color de la barra de navegación en móviles (opcional) */}
+        <meta name="theme-color" content="#0070f3" />
+
         {/* Marcado JSON-LD para la organización */}
         <script
           type="application/ld+json"
@@ -114,7 +121,8 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Ejemplo de etiqueta canonical */}
+
+        {/* Etiqueta canonical */}
         <link rel="canonical" href="https://bramelec.com" />
       </head>
       <body className={inter.className}>{children}</body>
