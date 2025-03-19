@@ -22,12 +22,13 @@ const WhatsAppFloatButton: FC<WhatsAppFloatButtonProps> = ({
         rel="noopener noreferrer"
         className="
           flex items-center justify-center 
-          w-16 h-16 md:w-28 md:h-28 
+          w-16 h-16 md:w-20 md:h-20
           rounded-full shadow-lg 
           transition-all hover:shadow-xl 
           transform duration-300 
           hover:scale-105
         "
+        aria-label={`Abrir chat de WhatsApp con el número ${phoneNumber}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +36,7 @@ const WhatsAppFloatButton: FC<WhatsAppFloatButtonProps> = ({
           height="256"
           viewBox="0 0 256 256"
           xmlSpace="preserve"
+          aria-labelledby="whatsapp-icon-title"
         >
           <g
             transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.80)"

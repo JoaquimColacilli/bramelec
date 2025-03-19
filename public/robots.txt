@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Sitemap: https://www.bramelec.com/sitemap.xml
+
+# Bloquear rutas específicas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/

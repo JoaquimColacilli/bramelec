@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bramelec.com"),
+  manifest: "/manifest.json",
   title: {
     default: "Bramelec - Expertos en Planos de Instalaciones Eléctricas",
     template: "%s | Bramelec",
@@ -73,25 +74,29 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "ElectricalContractor",
               name: "Bramelec",
-              url: "https://bramelec.com",
-              logo: "https://bramelec.com/logo.png",
               description:
-                "Especialistas en diseño y planos de instalaciones eléctricas para edificios.",
+                "Empresa líder en soluciones eléctricas y tecnológicas",
+              url: "https://bramelec.com",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Buenos Aires",
-                addressCountry: "AR",
+                addressLocality: "Tu Ciudad",
+                addressRegion: "Tu Región",
+                addressCountry: "Argentina",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+54-91172368190",
+                contactType: "customer service",
               },
               sameAs: [
+                "https://facebook.com/bramelec",
                 "https://instagram.com/bramelec",
-                "https://linkedin.com/company/https://www.linkedin.com/company/bramelec-proyectos-electricos/",
               ],
             }),
           }}
         />
-
         {/* Marcado JSON-LD para Sitelinks Search Box */}
         <script
           type="application/ld+json"
@@ -109,8 +114,7 @@ export default function RootLayout({
             }),
           }}
         />
-
-        {/* Ejemplo de etiqueta canonical (opcional si deseas forzar canonical) */}
+        {/* Ejemplo de etiqueta canonical */}
         <link rel="canonical" href="https://bramelec.com" />
       </head>
       <body className={inter.className}>{children}</body>

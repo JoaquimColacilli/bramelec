@@ -1,0 +1,17 @@
+{
+    "name": "Bramelec - Expertos en Planos de Instalaciones Eléctricas",
+    "short_name": "Bramelec",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0070f3",
+    "description": "Especialistas en diseño y planos de instalaciones eléctricas para edificios. Servicios profesionales de ingeniería eléctrica en Buenos Aires.",
+    "icons": [
+      {
+        "src": "/favicon.ico",
+        "sizes": "192x192",
+        "type": "image/x-icon"
+      }
+    ]
+  }
+  
